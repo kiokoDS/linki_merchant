@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linky/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:linky/send.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -173,22 +174,51 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildSuggestionCard(IconData icon, String label, Color bgColor) {
-    return Container(
-      width: 120,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: [
-          Icon(icon, size: 32, color: const Color(0xFF50C878)),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: GoogleFonts.figtree(fontWeight: FontWeight.w500),
-          ),
-        ],
+    return GestureDetector(
+      onTap: (){
+        switch (label) {
+          case "Pickup":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => SendPage()),
+            );
+            break;
+
+          case "Delivery":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => SendPage()),
+            );
+            break;
+
+          case "Schedule":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => SendPage()),
+            );
+            break;
+
+          default:
+            print("Unknown label: $label");
+        }
+      },
+      child: Container(
+        width: 120,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 32, color: const Color(0xFF50C878)),
+            const SizedBox(height: 8),
+            Text(
+              label,
+              style: GoogleFonts.figtree(fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
       ),
     );
   }
