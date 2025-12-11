@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 import 'login.dart';
 
@@ -8,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -15,9 +18,12 @@ class ProfileScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title:  Text(
           'My Profile',
-          style: TextStyle(color: Colors.black),
+          style: GoogleFonts.figtree(
+            fontSize: 16,
+            fontWeight: FontWeight.bold
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -30,13 +36,13 @@ class ProfileScreen extends StatelessWidget {
               child: Icon(Icons.person, size: 50, color: Color(0xFF50C878)),
             ),
             const SizedBox(height: 12),
-            const Text(
+             Text(
               'John Doe',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: GoogleFonts.figtree(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'john@email.com',
-              style: TextStyle(color: Colors.grey[600]),
+              style: GoogleFonts.figtree(color: Colors.grey[600]),
             ),
             const SizedBox(height: 20),
             Container(
@@ -50,22 +56,22 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
-                    children: const [
+                    children: [
                       Text(
                         '42',
-                        style: TextStyle(
+                        style: GoogleFonts.figtree(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text('Total Orders'),
+                      const Text('Total Orders'),
                     ],
                   ),
                   Column(
-                    children: const [
+                    children:  [
                       Text(
                         '58,400',
-                        style: TextStyle(
+                        style: GoogleFonts.figtree(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
@@ -103,9 +109,9 @@ class ProfileScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Text(
+                  child:  Text(
                     'Log Out',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: GoogleFonts.figtree(fontSize: 14, color: Colors.white),
                   ),
                 ),
               ),
@@ -122,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: const Color(0xFFE8F5E9),
         child: Icon(icon, color: const Color(0xFF50C878)),
       ),
-      title: Text(title),
+      title: Text(title, style: GoogleFonts.figtree(fontSize: 14),),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {},
     );

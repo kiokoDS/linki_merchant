@@ -91,6 +91,13 @@ class _SendPageState extends State<SendPage>
 
   late WebSocketService wsService;
 
+  String selectedCategory = 'Unspecified';
+  String selectedSize = 'M';
+  final TextEditingController itemdescriptionController = TextEditingController();
+
+  final List<String> categories = ['Unspecified','Documents', 'Food', 'Electronics', 'Drinks'];
+  final List<String> sizes = ['S', 'M', 'L', 'XL'];
+
 
   @override
   void initState() {
@@ -404,7 +411,7 @@ class _SendPageState extends State<SendPage>
       animType: AnimType.scale,
       dialogType: DialogType.success,
       dialogBackgroundColor: Colors.white,
-      btnOkColor: Colors.deepOrange[700],
+      btnOkColor: Colors.blueAccent,
       body: Center(
         child: Container(
           child: Padding(
@@ -416,12 +423,12 @@ class _SendPageState extends State<SendPage>
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.orange.shade50, Colors.white],
+                      colors: [Colors.white, Colors.white],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.orange.shade100),
+                    border: Border.all(color: Colors.white),
                   ),
                   child: Column(
                     children: [
@@ -433,8 +440,8 @@ class _SendPageState extends State<SendPage>
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
                                 colors: [
-                                  Colors.orange.shade400,
-                                  Colors.deepOrange.shade600,
+                                  Colors.blue.shade400,
+                                  Colors.blueAccent,
                                 ],
                               ),
                             ),
@@ -466,7 +473,7 @@ class _SendPageState extends State<SendPage>
                                   children: [
                                     Icon(
                                       Icons.star,
-                                      color: Colors.amber,
+                                      color: Colors.blueAccent,
                                       size: 18,
                                     ),
                                     SizedBox(width: 4),
@@ -489,7 +496,7 @@ class _SendPageState extends State<SendPage>
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.orange.shade100,
+                              color: Colors.blue.shade100,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -497,7 +504,7 @@ class _SendPageState extends State<SendPage>
                               style: GoogleFonts.figtree(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.orange.shade900,
+                                color: Colors.blueAccent,
                               ),
                             ),
                           ),
@@ -622,7 +629,7 @@ class _SendPageState extends State<SendPage>
     AwesomeDialog(
       context: context,
       dialogBackgroundColor: Colors.white,
-      btnOkColor: Colors.deepOrange[700],
+      btnOkColor: Colors.blueAccent[700],
       animType: AnimType.scale,
       dialogType: DialogType.info,
       body: Center(
@@ -658,12 +665,12 @@ class _SendPageState extends State<SendPage>
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Colors.orange.shade50, Colors.white],
+                        colors: [Colors.white, Colors.white],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.orange.shade100),
+                      border: Border.all(color: Colors.white),
                     ),
                     child: Column(
                       children: [
@@ -718,7 +725,7 @@ class _SendPageState extends State<SendPage>
         onClosed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              backgroundColor: Colors.orange,
+              backgroundColor: Colors.blue,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -847,17 +854,22 @@ class _SendPageState extends State<SendPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildSectionHeader("Location data", Colors.blue),
+              _buildSectionHeader("Location details", Colors.blue),
               Divider(),
               SizedBox(height: 10),
               _buildLocationCard(),
               SizedBox(height: 20),
-              _buildSectionHeader("Receiver data", Colors.blue),
+              _buildSectionHeader("Receiver details", Colors.blue),
               Divider(),
               SizedBox(height: 10),
               _buildReceiverCard(),
               SizedBox(height: 20),
-              _buildSectionHeader("Payment data", Colors.blue),
+              _buildSectionHeader("What are you sending", Colors.blue),
+              Divider(),
+              SizedBox(height: 10),
+              _dimensionCard(),
+              SizedBox(height: 20,),
+              _buildSectionHeader("Payment details", Colors.blue),
               Divider(),
               _buildPaymentCard(),
               SizedBox(height: 40),
@@ -944,7 +956,7 @@ class _SendPageState extends State<SendPage>
                   child: _buildActionButton(
                     icon: Icons.map_outlined,
                     label: "Pin Map",
-                    color: Colors.deepOrange,
+                    color: Colors.green,
                     onPressed: () => _showMapPicker(true),
                   ),
                 ),
@@ -980,7 +992,7 @@ class _SendPageState extends State<SendPage>
               _buildLocationField(
                 controller: destinationController,
                 icon: Icons.location_on,
-                iconColor: Colors.deepOrange,
+                iconColor: Colors.green,
                 hint: "Dropoff location",
                 onTap: () {
                   setState(() {
@@ -999,7 +1011,7 @@ class _SendPageState extends State<SendPage>
                       style: GoogleFonts.figtree(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: Colors.deepOrangeAccent,
+                        color: Colors.green,
                       ),
                     )),
               )
@@ -1082,7 +1094,7 @@ class _SendPageState extends State<SendPage>
         style: GoogleFonts.figtree(fontSize: 13, fontWeight: FontWeight.w600),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.deepOrangeAccent.shade200,
+        backgroundColor: Colors.blueAccent.shade200,
         foregroundColor: Colors.white,
         //side: BorderSide(color: color.withOpacity(0.5), width: 1.5),
         padding: EdgeInsets.symmetric(vertical: 12),
@@ -1220,10 +1232,10 @@ class _SendPageState extends State<SendPage>
               icon: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.deepOrange.withOpacity(0.1),
+                  color: Colors.green.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(Icons.search, color: Colors.black54, size: 20),
+                child: Icon(Icons.search, color: Colors.green, size: 20),
               ),
             ),
           );
@@ -1265,14 +1277,7 @@ class _SendPageState extends State<SendPage>
             heightof: 50,
           ),
           SizedBox(height: 16),
-          _buildInputField(
-            controller: descriptionController,
-            hint: "Description (optional)",
-            icon: Icons.notes_outlined,
-            iconColor: Colors.blue,
-            maxLines: 3,
-            heightof: 100,
-          ),
+
         ],
       ),
     );
@@ -1326,6 +1331,167 @@ class _SendPageState extends State<SendPage>
       ),
     );
   }
+
+  Widget _dimensionCard(){
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header
+
+            const SizedBox(height: 24),
+
+            // Category Selection
+             Text(
+              'Category',
+              style: GoogleFonts.figtree(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: categories.map((category) {
+                  final isSelected = selectedCategory == category;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedCategory = category;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.green : Colors.white,
+                          border: Border.all(
+                            color: isSelected ? Colors.green : Colors.grey.shade300,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          category,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: isSelected ? Colors.white : Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Package Size
+             Text(
+              'Package Size',
+              style: GoogleFonts.figtree(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: sizes.map((size) {
+                final isSelected = selectedSize == size;
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedSize = size;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: isSelected ?  Colors.green : Colors.white,
+                          border: Border.all(
+                            color: isSelected ? Colors.green : Colors.grey.shade300,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            size,
+                            style: GoogleFonts.figtree(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: isSelected ? Colors.white : Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 24),
+
+            // Optional Description
+            Text(
+              'Optional Description',
+              style: GoogleFonts.figtree(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 12),
+            _buildInputField(
+              controller: descriptionController,
+              hint: "Description (optional)",
+              icon: Icons.notes_outlined,
+              iconColor: Colors.blue,
+              maxLines: 3,
+              heightof: 100,
+            ),
+            // TextField(
+            //   controller: descriptionController,
+            //   maxLines: 4,
+            //   decoration: InputDecoration(
+            //     hintText: 'e.g. Fragile item, handle with care',
+            //     hintStyle: TextStyle(
+            //       color: Colors.grey.shade400,
+            //       fontSize: 14,
+            //     ),
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(8),
+            //       borderSide: BorderSide(color: Colors.grey.shade300),
+            //     ),
+            //     enabledBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(8),
+            //       borderSide: BorderSide(color: Colors.grey.shade300),
+            //     ),
+            //     focusedBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(8),
+            //       borderSide: const BorderSide(color: Color(0xFF14B8A6), width: 2),
+            //     ),
+            //     contentPadding: const EdgeInsets.all(12),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   Widget _buildPaymentCard() {
     return Container(
@@ -1471,7 +1637,7 @@ class _SendPageState extends State<SendPage>
               style: GoogleFonts.figtree(
                 color: Colors.white,
                 fontSize: 16,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 0.5,
               ),
             ),
@@ -1514,7 +1680,7 @@ class _SendPageState extends State<SendPage>
                 decoration: TextDecoration.none,
                 fontSize: highlight ? 20 : 15,
                 fontWeight: highlight ? FontWeight.w800 : FontWeight.w600,
-                color: highlight ? Colors.deepOrange : Colors.black87,
+                color: highlight ? Colors.blueAccent : Colors.black87,
               ),
             ),
           ),

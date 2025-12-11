@@ -45,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: 'Name',
                     labelStyle: GoogleFonts.figtree(color: Colors.green),
-                    hintStyle: GoogleFonts.figtree(),
+                    hintStyle: GoogleFonts.figtree(fontSize: 12),
                     hintText: 'Enter your name',
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -64,7 +64,7 @@ class SignUpScreen extends StatelessWidget {
                   style: GoogleFonts.figtree(),
                   decoration: InputDecoration(
                     labelStyle: GoogleFonts.figtree(color: Colors.green),
-                    hintStyle: GoogleFonts.figtree(),
+                    hintStyle: GoogleFonts.figtree(fontSize: 12),
                     labelText: 'Phone Number',
                     hintText: 'Enter your phone number',
                     border: OutlineInputBorder(
@@ -85,7 +85,7 @@ class SignUpScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: GoogleFonts.figtree(color: Colors.green),
-                    hintStyle: GoogleFonts.figtree(),
+                    hintStyle: GoogleFonts.figtree(fontSize: 12),
                     hintText: 'Enter your new password',
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,

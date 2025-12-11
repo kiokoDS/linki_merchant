@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Email',
                       labelStyle: GoogleFonts.figtree(color: Colors.green),
                       hintText: 'Enter your email or username',
-                      hintStyle: GoogleFonts.figtree(),
+                      hintStyle: GoogleFonts.figtree(fontSize: 12),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(20),
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: GoogleFonts.figtree(color: Colors.green),
-                      hintStyle: GoogleFonts.figtree(),
+                      hintStyle: GoogleFonts.figtree(fontSize: 12),
                       hintText: 'Enter your password',
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
